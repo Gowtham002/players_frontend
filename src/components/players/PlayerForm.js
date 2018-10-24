@@ -20,7 +20,7 @@ const renderInput = ({ input, label, type, meta: { touched, error, warning } }) 
 
 class PlayerForm extends Component {
   render() {
-    let { handleSubmit, btnText, isSubmitting } = this.props;
+    let { handleSubmit, isSubmitting } = this.props;
     return (
       <form onSubmit={handleSubmit}>
         <Field name="name" type="text" component={renderInput} label="Name" />

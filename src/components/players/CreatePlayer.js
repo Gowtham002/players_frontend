@@ -1,5 +1,7 @@
-import React, { Component } from "react";
-import { Form, FormGroup, ControlLabel, FormControl, Button } from "react-bootstrap";
+import React, { Component, Fragment } from "react";
+import { Alert } from "react-bootstrap";
+import { connect } from "react-redux";
+import { savePlayer } from "./../../redux/actions/player";
 import PlayerForm from "./PlayerForm";
 
 class CreatePlayer extends Component {
@@ -11,14 +13,34 @@ class CreatePlayer extends Component {
   }
 
   onSubmit = (values) => {
-    console.log(values);
+    this.props.savePlayer(values);
+  }
+
+  componentDidUpdate() {
+    if(this.props.saveSuccess) {
+      this.props.history.push("/players");
+    }
   }
 
   render() {
+    let { loading, hasSaveError } = this.props;
     return (
-      <PlayerForm onSubmit={this.onSubmit} isSubmitting={false}/>
+      <Fragment>
+        { hasSaveError ? <Alert bsStyle="danger">Something went wrong! Please try again later.</Alert> : null }
+        <PlayerForm onSubmit={this.onSubmit} isSubmitting={loading}/>
+      </Fragment>
     )
   }
 }
 
-export default CreatePlayer;
+const mapStateToProps = ({players}) => ({
+  hasSaveError: players.hasSaveError,
+  loading: players.loading,
+  saveSuccess: players.saveSuccess
+})
+
+const mapDispatchToProps = dispatch => ({
+  savePlayer: (player) => dispatch(savePlayer(player)) 
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(CreatePlayer);
