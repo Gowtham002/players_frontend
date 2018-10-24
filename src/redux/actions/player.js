@@ -2,9 +2,9 @@ import axios from "axios";
 import { API_URL } from "../../components/common/constants";
 import types from "../actionTypes/player";
 
-export const fetchPlayers = () => dispatch => {
+export const fetchPlayers = (page = 1) => dispatch => {
   dispatch(fetchPlayersPending());
-  axios.get(`${API_URL}/players`)
+  axios.get(`${API_URL}/players?page=${page}`)
   .then(resp => {
     if(resp && resp.data) {
       dispatch(fetchPlayersSuccess(resp.data));
@@ -51,9 +51,9 @@ export const deletePlayer = (playerId) => dispatch => {
   })
 }
 
-const fetchPlayersSuccess = players => ({
+const fetchPlayersSuccess = (data) => ({
   type: types.GET_PLAYERS_SUCCESS,
-  players
+  ...data
 })
 
 const fetchPlayersPending = () => ({

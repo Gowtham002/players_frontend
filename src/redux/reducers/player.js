@@ -5,17 +5,19 @@ const initialState = {
   loading: false,
   hasError: false,
   hasSaveError: false,
-  saveSuccess: false
+  saveSuccess: false,
+  currentPage: 1,
+  totalPages: 0
 }
 
 const players = (state = initialState, action) => {
   switch(action.type) {
     case types.GET_PLAYERS_PENDING:
-      return { loading: true, players: [], hasError: false }
+      return { ...state, loading: true, players: [], hasError: false }
     case types.GET_PLAYERS_ERROR:
-      return { hasError: true, players: [], loading: false }
+      return { ...state, hasError: true, players: [], loading: false }
     case types.GET_PLAYERS_SUCCESS:
-      return { players: action.players, loading: false, hasError: false }
+      return { ...state, players: action.players, currentPage: action.currentPage, totalPages: action.totalPages, loading: false, hasError: false }
     case types.SAVE_PLAYER_PENDING:
       return { ...state, loading: true, hasSaveError: false }
     case types.SAVE_PLAYER_ERROR:

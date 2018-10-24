@@ -11,6 +11,7 @@ const PANEL_ITEMS = [
   },
 ]
 
-const API_URL = "https://players-backend.herokuapp.com";
+// const API_URL = "https://players-backend.herokuapp.com";
+const API_URL = "http://localhost:4000";
 
 export { PANEL_ITEMS, API_URL }

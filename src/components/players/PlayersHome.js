@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Table, Alert, Glyphicon, OverlayTrigger, Popover, Button } from "react-bootstrap";
+import { Table, Alert, Glyphicon, OverlayTrigger, Popover, Button, Pager } from "react-bootstrap";
 import TableHeader from "./../common/TableHeader";
 import { fetchPlayers, deletePlayer } from "ACTIONS/player";
 import LoadingScreen from 'react-loading-screen';
@@ -10,7 +10,7 @@ const tableHeaders = ["#", "Name", "Created At", "Actions"];
 class PlayersHome extends Component {
 
   componentDidMount() {
-    this.props.fetchPlayers();
+    this.props.fetchPlayers(this.props.currentPage);
   }
 
   deletePlayer = (playerId) => {
@@ -18,7 +18,7 @@ class PlayersHome extends Component {
   }
 
   render() {
-    let { players = [], loading, hasError } = this.props;
+    let { players = [], loading, hasError, currentPage, totalPages, fetchPlayers } = this.props;
     return (
       <LoadingScreen
         loading={loading}
@@ -61,6 +61,13 @@ class PlayersHome extends Component {
             }
           </tbody>
         </Table>
+        { totalPages > 1 ?
+          <Pager bsClass="pager pull-right">
+            <Pager.Item onClick={() => fetchPlayers(currentPage-1)} disabled={currentPage < 2}>Previous</Pager.Item>
+            <Pager.Item onClick={() => fetchPlayers(currentPage+1)} disabled={currentPage === totalPages}>Next</Pager.Item>
+          </Pager>
+          : null
+        }
       </LoadingScreen>
     )
   }
@@ -71,7 +78,7 @@ const mapStateToProps = ({players}) => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  fetchPlayers: () => dispatch(fetchPlayers()),
+  fetchPlayers: (page) => dispatch(fetchPlayers(page)),
   deletePlayer: (playerId) => dispatch(deletePlayer(playerId))
 })
 
