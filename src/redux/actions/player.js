@@ -30,7 +30,6 @@ export const savePlayer = (player) => dispatch => {
     }
   })
   .catch(err => {
-    console.log(err);
     dispatch(savePlayerError());
   })
 }
@@ -48,7 +47,6 @@ export const deletePlayer = (playerId) => dispatch => {
     }
   })
   .catch(err => {
-    console.log(err);
     dispatch(deletePlayerError());
   })
 }
