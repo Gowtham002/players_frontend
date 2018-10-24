@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Table, Alert, DropdownButton, MenuItem } from "react-bootstrap";
 import TableHeader from "./../common/TableHeader";
-import { fetchPlayers, deletePlayer} from "./../../redux/actions/player";
+import { fetchPlayers, deletePlayer } from "ACTIONS/player";
 import LoadingScreen from 'react-loading-screen';
 
 const tableHeaders = ["#", "Name", "Created At", "Actions"]

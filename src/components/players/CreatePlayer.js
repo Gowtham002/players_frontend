@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from "react";
 import { Alert } from "react-bootstrap";
 import { connect } from "react-redux";
-import { savePlayer } from "./../../redux/actions/player";
+import { savePlayer } from "ACTIONS/player";
 import PlayerForm from "./PlayerForm";
 
 class CreatePlayer extends Component {
