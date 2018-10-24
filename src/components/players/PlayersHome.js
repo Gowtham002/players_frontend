@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Table, Alert, DropdownButton, MenuItem } from "react-bootstrap";
+import { Table, Alert, Glyphicon, OverlayTrigger, Popover, Button } from "react-bootstrap";
 import TableHeader from "./../common/TableHeader";
 import { fetchPlayers, deletePlayer } from "ACTIONS/player";
 import LoadingScreen from 'react-loading-screen';
 
-const tableHeaders = ["#", "Name", "Created At", "Actions"]
+const tableHeaders = ["#", "Name", "Created At", "Actions"];
 
 class PlayersHome extends Component {
 
@@ -40,9 +40,19 @@ class PlayersHome extends Component {
                       <td>{player.name}</td>
                       <td>{new Date(player.created_at).toLocaleDateString()}</td>
                       <td>
-                        <DropdownButton id={index} bsStyle="danger" dropup title="Delete">
-                          <MenuItem eventKey="1" onClick={() => this.deletePlayer(player._id)}>Confirm</MenuItem>
-                        </DropdownButton>
+                        <OverlayTrigger
+                          container={this}
+                          trigger="focus"
+                          placement="top"
+                          overlay={
+                            <Popover id="popover-positioned-scrolling-top" title="Confirm Delete">
+                              <div className="popover-delete--content">Are you sure want to delete the player?</div>
+                              <Button bsStyle="success" onClick={() => this.deletePlayer(player._id)}>Confirm</Button>
+                            </Popover>
+                          }
+                        >
+                          <Button bsStyle="danger"><Glyphicon glyph="trash"/></Button>
+                        </OverlayTrigger>
                       </td>
                     </tr>
                   )

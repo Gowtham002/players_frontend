@@ -32,3 +32,17 @@ code {
 .form-control.custom-input--width {
   width: 250px;
 }
+.popover-delete--content {
+  margin: 0 auto;
+  text-align: left;
+  margin-bottom: 5px;
+  position: relative;
+  display: block;
+}
+.page-header.custom-header {
+  margin: 0 0 20px;
+  padding: 0;
+}
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+  vertical-align: middle;
+}

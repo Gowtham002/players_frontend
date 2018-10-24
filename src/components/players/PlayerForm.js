@@ -24,7 +24,7 @@ class PlayerForm extends Component {
     return (
       <form onSubmit={handleSubmit}>
         <Field name="name" type="text" component={renderInput} label="Name" />
-        <Button type="submit" disabled={isSubmitting}>{isSubmitting ? "Saving..." : "Save"}</Button>
+        <Button bsStyle={isSubmitting ? "success" : "primary"} type="submit" disabled={isSubmitting}>{isSubmitting ? "Saving..." : "Save"}</Button>
       </form>
     )
   }

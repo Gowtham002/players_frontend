@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from "react";
-import { Alert } from "react-bootstrap";
+import { Alert, PageHeader } from "react-bootstrap";
 import { connect } from "react-redux";
 import { savePlayer } from "ACTIONS/player";
 import PlayerForm from "./PlayerForm";
@@ -26,6 +26,7 @@ class CreatePlayer extends Component {
     let { loading, hasSaveError } = this.props;
     return (
       <Fragment>
+        <PageHeader bsClass="page-header custom-header"><small>Create Player</small></PageHeader>
         { hasSaveError ? <Alert bsStyle="danger">Something went wrong! Please try again later.</Alert> : null }
         <PlayerForm onSubmit={this.onSubmit} isSubmitting={loading}/>
       </Fragment>

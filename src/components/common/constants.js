@@ -1,6 +1,6 @@
 const PANEL_ITEMS = [
   {
-    title: "Player",
+    title: "Players",
     items: [{
       title: "All Players",
       link: "/players"
