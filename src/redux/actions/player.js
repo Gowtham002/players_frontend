@@ -22,9 +22,7 @@ export const savePlayer = (player) => dispatch => {
   axios.post(`${API_URL}/players`, player)
   .then(resp => {
     if(resp && resp.data) {
-      setTimeout(() => {
-        dispatch(savePlayerSuccess());
-      }, 2000);
+      dispatch(savePlayerSuccess());
     } else {
       dispatch(savePlayerError());
     }
@@ -39,9 +37,7 @@ export const deletePlayer = (playerId) => dispatch => {
   axios.delete(`${API_URL}/players/${playerId}`)
   .then(resp => {
     if(resp && resp.data) {
-      setTimeout(() => {
-        dispatch(deletePlayerSuccess(playerId));
-      }, 2000);
+      dispatch(deletePlayerSuccess(playerId));
     } else {
       dispatch(deletePlayerError());
     }
