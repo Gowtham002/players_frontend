@@ -25,7 +25,7 @@ class PlayersHome extends Component {
         bgColor='#f1f1f1'
         spinnerColor='#9ee5f8'
         textColor='#676767'
-        text='Loading player list'
+        text='Loading players list'
       > 
       { hasError ? <Alert bsStyle="danger">Something went wrong! Please try again later.</Alert> : null }
         <Table striped bordered hover>
