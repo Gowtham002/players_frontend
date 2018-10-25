@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Table, Alert, Glyphicon, OverlayTrigger, Popover, Button, Pager } from "react-bootstrap";
+import { Table, Alert, Glyphicon, OverlayTrigger, Popover, Button } from "react-bootstrap";
 import TableHeader from "./../common/TableHeader";
+import Pagination from "./../common/Pagination";
 import { fetchPlayers, deletePlayer } from "ACTIONS/player";
 import LoadingScreen from 'react-loading-screen';
 
@@ -61,13 +62,7 @@ class PlayersHome extends Component {
             }
           </tbody>
         </Table>
-        { totalPages > 1 ?
-          <Pager bsClass="pager pull-right">
-            <Pager.Item onClick={() => fetchPlayers(currentPage-1)} disabled={currentPage < 2}>Previous</Pager.Item>
-            <Pager.Item onClick={() => fetchPlayers(currentPage+1)} disabled={currentPage === totalPages}>Next</Pager.Item>
-          </Pager>
-          : null
-        }
+        <Pagination totalPages={totalPages} currentPage={currentPage} onClick={fetchPlayers}/>
       </LoadingScreen>
     )
   }
